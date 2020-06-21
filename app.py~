@@ -1,0 +1,10 @@
+import requests
+from bs4 import BeautifulSoup
+URL= 'https://www.agazeta.com.br/'
+page= requests.get(URL)
+
+soup = BeautifulSoup(page.content,'html.parser')
+search = soup.find_all('div','column areatemplate-esquerda large-15 large-offset-0 xlarge-14 xlarge-offset-1 float-left')
+print(page)
+print('')
+print(search)
