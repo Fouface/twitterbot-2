@@ -22,6 +22,7 @@ def randomword(length):
 
 
 random_email = randomword(8)
+random_password = randomword(12)
 
 #opens webdriver
 driver = webdriver.Chrome(executable_path='/Users/siber/Desktop\chromedriver.exe')
@@ -64,10 +65,11 @@ def randon_name():
     return username
 
 full_name = randon_name()
-data = open("data.txt","w")
-data.write(full_name+' '+random_email)
+data = open("data.txt","a")
+random_email=random_email+'@sharkslasers.com'
+data.write(full_name+' '+random_email+' '+random_password+'\n')
 data.close()
-# driver.quit()
+driver.quit()
 
 
 
