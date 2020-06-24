@@ -2,7 +2,7 @@ from selenium import webdriver
 import requests, random, string
 from bs4 import BeautifulSoup
 from selenium.webdriver.common.keys import Keys
-
+import time
 
 # go to https://www.guerrillamail.com/
 # generate a randon email
@@ -67,9 +67,28 @@ def randon_name():
 full_name = randon_name()
 data = open("data.txt","a")
 random_email=random_email+'@sharkslasers.com'
+
+# saves user data to app file
 data.write(full_name+' '+random_email+' '+random_password+'\n')
 data.close()
+#driver.quit()
+
+#goes to twitter sign up page
+driver.get('https://twitter.com/i/flow/signup')
+time.sleep(3)
+
+
+# starts filling the form
+driver.find_element_by_name('name').send_keys(full_name)
+time.sleep(1)
+email_button= driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[4]/span')
+
+
+email_button.click()
+driver.find_element_by_xpath('//*[@id="react-root"]/div/div/div[1]/div[2]/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div[3]/label/div/div[2]/div/input').send_keys(random_email)
+
+
+
+# clooses brwoser in 2 secs
+time.sleep(2)
 driver.quit()
-
-
-
